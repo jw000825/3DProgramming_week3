@@ -18,8 +18,8 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
 }
 
-const float steps = 100;
-const float angle = 3.1415926 * 2.f / steps;
+//const float steps = 100;
+//const float angle = 3.1415926 * 2.f / steps;
 
 int main(void)
 {
@@ -40,9 +40,9 @@ int main(void)
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    float xPos = 0;
+    /*float xPos = 0;
     float yPos = 0;
-    float radius = 1.0f;
+    float radius = 1.0f;*/
 
     while (!glfwWindowShouldClose(window))
     {
@@ -53,16 +53,16 @@ int main(void)
 
         //90도와 같이 각도로 연산하고 싶으면
         //glm의 삼각함수는 radian 형식으로 입력을 받기 때문에 변환해서 넣어주어야한다.
-        glm::sin(glm::radians(90.0));  
+        //glm::sin(glm::radians(90.0));  
         glClearColor(0.0f, 0.0f, 0.0f, 0.1f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        float prevX = xPos;
+        /*float prevX = xPos;
         float prevY = yPos - radius;
         for (int i = 0; i <= steps; i++) {
             float newX = radius * sin(angle * i);
             float newY = -radius * cos(angle * i);
-            glBegin(GL_TRIANGLES);
+            glBegin(GL_LINE_STRIP);
             glVertex3f(0.0f, 0.0f, 0.0f);
             glVertex3f(prevX, prevY, 0.0f);
             glVertex3f(newX, newY, 0.0f);
@@ -70,7 +70,21 @@ int main(void)
 
             prevX = newX;
             prevY = newY;
+        }*/
+
+        glColor3f(1.0f, 0.0f, 0.0f);
+        double rad = 1.0;
+        glBegin(GL_LINE_STRIP);
+        for (int i = 0; i < 360; i++)
+        {
+            double angle, x, y;
+            angle = i * 3.141592 / 180;
+            x = rad * cos(angle);
+            y = rad * sin(angle);
+
+            glVertex2f(x, y);
         }
+        glEnd();
 
 
         /*glBegin(GL_LINE_STRIP);
